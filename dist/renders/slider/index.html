@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Slider</title>
+
+    <link rel="stylesheet" href="../../../dist/renders/slider/slider.min.css"/>
+    <link rel="stylesheet" href="../../../dist/renders/banner/banner.min.css"/>
+    <link rel="stylesheet" href="../../../dist/renders/image/image.min.css"/>
+    <link rel="stylesheet" href="../../../dist/renders/video/video.min.css"/>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="js_slider_wrap" style="margin:0 auto;"></div>
+
+<script src="../../reusable/cms-javascript-sdk.min.js"></script>
+
+<script src="../../reusable/handlebars.min.js"></script>
+
+<script src="../../reusable/utils.js"></script>
+
+<script src="../../reusable/handlebars_helpers.js"></script>
+
+<script src="../../reusable/lory.min.js"></script>
+
+<script src="../../../dist/renders/slider/sliderHelper.js"></script>
+
+<script src="../../../dist/renders/slider/template.slider.min.js"></script>
+<script src="../../../dist/renders/image/template.image.min.js"></script>
+<script src="../../../dist/renders/banner/template.banner.min.js"></script>
+<script src="../../../dist/renders/video/template.video.min.js"></script>
+
+<script>
+    Handlebars.partials = AmpCa.templates;
+
+    AmpCa.utils = new AmpCa.Utils();
+
+    AmpCa.utils.getCaData({
+        auth: {
+            baseUrl: 'https://c1.adis.ws',
+            id: '42041097-5281-4e6d-b506-62b08b85ab80',
+            store: 'csdemo'
+        },
+        callback: function (data) {
+            var template = Handlebars.template(AmpCa.templates.slider);
+            document.querySelectorAll(".js_slider_wrap")[0].innerHTML = template(data[0]);
+            loryHelpers.initSliders(document.querySelectorAll(".js_slider"));
+            AmpCa.utils.postProcessing.exec('slider', {});
+
+        },
+        formatData: function (data) {
+            return amp.inlineContent(JSON.parse(data));
+        }
+    });
+</script>
+</body>
+</html>

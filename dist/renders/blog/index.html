@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+
+    <link rel="stylesheet" href="../../../dist/renders/blog/blog.min.css"/>
+    <link rel="stylesheet" href="../../../dist/renders/text/text.min.css"/>
+    <link rel="stylesheet" href="../../../dist/renders/image/image.min.css"/>
+    <link rel="stylesheet" href="../../../dist/renders/video/video.min.css"/>
+    <link rel="stylesheet" href="../../../dist/renders/slider/slider.min.css"/>
+    <link rel="stylesheet" href="../../../dist/renders/banner/banner.min.css"/>
+    <link rel="stylesheet" href="../../../dist/renders/cardList/cardList.min.css"/>
+    <link rel="stylesheet" href="../../../dist/renders/card/card.min.css"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="js_blog_wrap"></div>
+
+<script src="../../reusable/cms-javascript-sdk.min.js"></script>
+
+<script src="../../reusable/handlebars.min.js"></script>
+
+<script src="../../reusable/showdown.min.js"></script>
+
+<script src="../../reusable/utils.js"></script>
+
+
+<script src="../../reusable/handlebars_helpers.js"></script>
+
+<script src="../../reusable/lory.min.js"></script>
+
+<script src="../../../dist/renders/slider/sliderHelper.js"></script>
+
+
+<script src="../../../dist/renders/blog/template.blog.min.js"></script>
+<script src="../../../dist/renders/image/template.image.min.js"></script>
+<script src="../../../dist/renders/text/template.text.min.js"></script>
+<script src="../../../dist/renders/video/template.video.min.js"></script>
+<script src="../../../dist/renders/banner/template.banner.min.js"></script>
+<script src="../../../dist/renders/cardList/template.cardList.min.js"></script>
+<script src="../../../dist/renders/card/template.card.min.js"></script>
+<script src="../../../dist/renders/slider/template.slider.min.js"></script>
+
+<script>
+
+    Handlebars.partials = AmpCa.templates;
+
+    AmpCa.utils = new AmpCa.Utils();
+
+    AmpCa.utils.getCaData({
+        auth: {
+            baseUrl: 'https://c1.adis.ws',
+            id: 'a232e160-4c8a-4a96-97d1-635dc85bfe38',
+            store: 'csdemo'
+        },
+        callback: function (data) {
+            var template = Handlebars.template(AmpCa.templates.blog);
+            document.querySelectorAll(".js_blog_wrap")[0].innerHTML = template(data[0]);
+            loryHelpers.initSliders(document.querySelectorAll(".js_slider"));
+            AmpCa.utils.postProcessing.exec('blog', {});
+        },
+        formatData: function (data) {
+            return amp.inlineContent(JSON.parse(data));
+        }
+    });
+
+</script>
+
+</body>
+</html>
