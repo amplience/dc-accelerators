@@ -6,7 +6,7 @@
 
 # Dynamic Content Accelerators
 
- 
+
 This repository is intended as an accelerated starting point for implementing Amplience Dynamic Content. It contains the front-end render templates required to display the most commonly used content types.
 
  
@@ -20,7 +20,7 @@ This repository is intended as an accelerated starting point for implementing Am
 
 ## Table of Contents
 - [Configuring the basepath](#configuring-the-basepath)
-- [Install](#install)
+- [Installation](#installation)
 - [Demo](#demo)
 - [Render Dependencies](#render-dependencies)
 - [Content Packages](#content-packages)
@@ -36,11 +36,11 @@ This repository is intended as an accelerated starting point for implementing Am
 - [Bug / Feature Request](#bug-/-feature-request)
 - [Contacts](#contacts)
 
-## Configuring the basepath
+## Configuring the Basepath
 
 Before building the project, the basepath for the content types needs to be defined. This will be the location where the content types are stored. To configure this, open up the `.replace.json` file and change the content type basepath to the root URL where you are storing the content types.
     
-## Install
+## Installation
 
 ```bash
 # Install dependencies 
