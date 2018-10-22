@@ -10,11 +10,11 @@
   "main": "src/",
   "author": "Amplience",
   "dependencies": {
-    "cms-javascript-sdk": "amplience/cms-javascript-sdk#2d7cb9d",
+    "cms-javascript-sdk": "github:amplience/cms-javascript-sdk#2d7cb9d",
     "handlebars": "4.0.5",
     "lory.js": "2.2.1",
     "showdown": "1.7.1",
-    "content-types": "amplience/dc-accelerators-content-types#49428b8"
+    "dc-accelerators-content-types": "github:amplience/dc-accelerators-content-types#49428b8"
   },
   "devDependencies": {
     "del": "3.0.0",
