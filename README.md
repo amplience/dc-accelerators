@@ -4,10 +4,12 @@
 
 
 
-# Dynamic Content Accelerators
+# Dynamic Content Accelerators with Content Rendering Service
 
 
 This repository is intended as an accelerated starting point for implementing Amplience Dynamic Content. It contains the front-end render templates required to display the most commonly used content types.
+
+The content rendering service automates the process of combining JSON content with handlebars templates to generate HTML that can then be added to a page on your website.
 
  
 <div align="center">
@@ -35,7 +37,7 @@ This repository is intended as an accelerated starting point for implementing Am
 - [Development](#development)
 - [Bug / Feature Request](#bug-/-feature-request)
 - [Contacts](#contacts)
-
+    
 ## Configuring the Basepath
 
 Before building the project, the basepath for the content types needs to be defined. This will be the location where the content types are stored. To configure this, open up the `.replace.json` file and change the content type basepath to the root URL where you are storing the content types.
@@ -51,7 +53,6 @@ $ npm install --global gulp-cli
 $ gulp
 ```
 Open page with desired render, e.g. localhost:9100/dist/renders/image/index.html
-
 ## Demo
 Here you can find the Dynamic Content inventory, where all the accelerator modules are shown:
 
@@ -84,7 +85,6 @@ Commonly used content type templates have been split up into separate packages.
 Individual packages can be found in `src/renders`, here you can edit any render templates or styling prior to running a build. Note that the actual content types are stored in a different repository, which can be found here:
 
 https://github.com/amplience/dc-accelerators-content-types
- 
 
 ## Setting up the Transformation Templates
 
@@ -348,7 +348,7 @@ When the content types have been placed at the same basepath URL as you built th
 - ##### Visualisation
 
 	The visualisation file is located in `src/renders/homepage`
-
+	
 ## Generated Builds
 Built renders are located in `dist/renders` folder.
 Here you can find unminified and minified css, handlebars templates and the visualisation html page.
@@ -356,16 +356,14 @@ The `libs` folder contains JS dependencies for the render. Most of the files in 
 ## Dependencies
 All JS dependencies for renders can be found in the `dist/reusable` folder.
 JS dependencies are composed of helper scripts and 3d party libs.
-### Helper Scripts
-Helper scripts can also be found in `src/reusable/js` folder. Below is the list of scripts and their description:
+### Helper Script
 
 - `utils.js` is needed to make AJAX requests to retrieve render data. It also has several methods to troubleshoot the renders.
-- `hanldebars_helpers.js` is used to declare various handlebars helpers, to solve different tasks for handlebars templates.
+
 
 ### 3rd-party Libs
 All 3d-party libs are pulled as npm dependencies and can be found in package.json
 
-- `handlebars.min.js` is the handlebars templates library.
 - `cms-javascript-sdk.min.js` is used to format the requested JSON content. Example usage: 
 
 ```javascript
@@ -373,7 +371,6 @@ amp.inlineContent(JSON.parse(data));
 ```
 - `showdown.min.js` is used to parse text with markdown and convert it into semantic html.
 - `lory.min.js` is a slider library and is used for slider renders.
-
 ## Building Minified and Concatenated Files
 ```bash
 # Install dependencies 
