@@ -4,7 +4,7 @@
 
 
 
-#Dynamic Content Accelerators
+# Dynamic Content Accelerators
 
 
 This repository is intended as an accelerated starting point for implementing Amplience Dynamic Content. It contains the front-end render templates required to display the most commonly used content types.

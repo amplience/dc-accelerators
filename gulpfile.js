@@ -311,6 +311,14 @@ gulp.task('renders-templates', function () {
         .pipe(gulp.dest('dist/renders'));
 });
 
+gulp.task('copy-icons', function () {
+    return gulp
+        .src([
+            'src/icons/**'
+        ])
+        .pipe(gulp.dest('dist/icons'));
+});
+
 gulp.task('renders-js-copy', function () {
     return gulp
         .src(['src/renders/**/js/*.js'])
@@ -433,6 +441,7 @@ gulp.task(
         'del',
         'renders-build',
         'copy-node-modules',
+        'copy-icons',
         'addLoryLicense',
         'addShowdownLicense',
         'reusable-js-min'
