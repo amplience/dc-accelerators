@@ -41,7 +41,7 @@
 
 <script src="../../reusable/utils.js"></script>
 
-<script src="../../../dist/renders/externalBlock/template.externalBlock.min.js"></script>
+<script src="../../../dist/renders/externalBlock/acc-template-externalBlock.min.js"></script>
 
 <script>
 
@@ -54,7 +54,7 @@
             store: 'csdemo'
         },
         callback: function (data) {
-            var template = Handlebars.template(AmpCa.templates.externalBlock);
+            var template = Handlebars.template(AmpCa.templates['acc-template-externalBlock']);
             document.querySelectorAll(".js_external_wrap")[0].innerHTML = template(data[0]);
         },
         formatData: function (data) {

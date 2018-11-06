@@ -66,8 +66,9 @@
           .splice(-1)[0]
           .replace('/', '');
         var matchedTemplate;
+        var templateName = 'acc-template-' + parsedName;
         for (var x in Handlebars.partials) {
-          if (parsedName.toLowerCase() === x.toLowerCase()) {
+          if ((templateName.toLowerCase() === x.toLowerCase()) || (parsedName.toLowerCase() === x.toLowerCase())) {
             matchedTemplate = Handlebars.partials[x].length
               ? Handlebars.partials[x]
               : Handlebars.template(Handlebars.partials[x]);

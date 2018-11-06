@@ -39,17 +39,17 @@
 <!-- /build -->
 
 
-<script src="../../../dist/renders/image/template.image.min.js"></script>
-<script src="../../../dist/renders/card/template.card.min.js"></script>
-<script src="../../../dist/renders/cardList/template.cardList.min.js"></script>
+<script src="../../../dist/renders/image/acc-template-image.min.js"></script>
+<script src="../../../dist/renders/card/acc-template-card.min.js"></script>
+<script src="../../../dist/renders/cardList/acc-template-cardList.min.js"></script>
 
 
 <script>
 
     AmpCa.utils = new AmpCa.Utils();
 
-    Handlebars.partials.image = AmpCa.templates.image;
-    Handlebars.partials.card = AmpCa.templates.card;
+    Handlebars.partials['acc-template-image'] = AmpCa.templates['acc-template-image'];
+    Handlebars.partials['acc-template-card'] = AmpCa.templates['acc-template-card'];
 
     AmpCa.utils.getCaData({
         auth: {
@@ -58,7 +58,7 @@
             store: 'csdemo'
         },
         callback: function (data) {
-            var template = Handlebars.template(AmpCa.templates.cardList);
+            var template = Handlebars.template(AmpCa.templates['acc-template-cardList']);
             document.querySelectorAll(".js_card_list_wrap")[0].innerHTML = template(data[0]);
         },
         formatData: function (data) {

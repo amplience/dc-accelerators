@@ -137,7 +137,7 @@
                 contentType.renderTypes = renderTypes;
             });
 
-            var template = Handlebars.template(AmpCa.templates.homepage);
+            var template = Handlebars.template(AmpCa.templates['acc-template-homepage']);
             document.querySelectorAll(".js_homepage_wrap")[0].innerHTML = template(data[0]);
 
             loryHelpers.initSliders(document.querySelectorAll(".js_slider"));

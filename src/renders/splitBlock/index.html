@@ -50,10 +50,10 @@
 <script src="../../reusable/js/handlebars_helpers.js"></script>
 <!-- /build -->
 
-<script src="../../../dist/renders/splitBlock/template.splitBlock.min.js"></script>
-<script src="../../../dist/renders/image/template.image.min.js"></script>
-<script src="../../../dist/renders/text/template.text.min.js"></script>
-<script src="../../../dist/renders/video/template.video.min.js"></script>
+<script src="../../../dist/renders/splitBlock/acc-template-splitBlock.min.js"></script>
+<script src="../../../dist/renders/image/acc-template-image.min.js"></script>
+<script src="../../../dist/renders/text/acc-template-text.min.js"></script>
+<script src="../../../dist/renders/video/acc-template-video.min.js"></script>
 
 <script>
 
@@ -68,7 +68,7 @@
         },
         callback: function (data) {
             console.log(data);
-            var template = Handlebars.template(AmpCa.templates.splitBlock);
+            var template = Handlebars.template(AmpCa.templates['acc-template-splitBlock']);
             document.querySelectorAll(".js_splitBlock_wrap")[0].innerHTML = template(data[0]);
 
             AmpCa.utils.postProcessing.exec('splitBlock');
