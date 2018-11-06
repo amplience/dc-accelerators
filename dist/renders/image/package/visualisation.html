@@ -56,7 +56,7 @@
     AmpCa.utils.getCaData({
         url: getQueryVar(['vse', 'content']),
         callback: function (data) {
-            var template = Handlebars.template(AmpCa.templates.image);
+            var template = Handlebars.template(AmpCa.templates['acc-template-image']);
             document.querySelectorAll(".js_image_wrap")[0].innerHTML = template(data[0]);
         },
         formatData: function (data) {

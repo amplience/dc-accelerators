@@ -58,14 +58,14 @@
 
     AmpCa.utils = new AmpCa.Utils();
 
-    Handlebars.partials.image = AmpCa.templates.image;
-    Handlebars.partials.card = AmpCa.templates.card;
+    Handlebars.partials['acc-template-image'] = AmpCa.templates['acc-template-image'];
+    Handlebars.partials['acc-template-card'] = AmpCa.templates['acc-template-card'];
 
     AmpCa.utils.getCaData({
         url: getQueryVar(['vse', 'content']),
         callback: function (data) {
 
-            var template = Handlebars.template(AmpCa.templates.cardList);
+            var template = Handlebars.template(AmpCa.templates['acc-template-cardList']);
             document.querySelectorAll(".js_card_list_wrap")[0].innerHTML = template(data[0]);
         },
         formatData: function (data) {

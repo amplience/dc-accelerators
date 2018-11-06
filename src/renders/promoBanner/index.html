@@ -31,7 +31,7 @@
 <!-- build:js ../../reusable/utils.js -->
 <script src="../../reusable/js/utils.js"></script>
 <!-- /build -->
-<script src="../../../dist/renders/promoBanner/template.promoBanner.min.js"></script>
+<script src="../../../dist/renders/promoBanner/acc-template-promoBanner.min.js"></script>
 
 <script>
 
@@ -44,7 +44,7 @@
             store: 'csdemo'
         },
         callback: function (data) {
-            var template = Handlebars.template(AmpCa.templates.promoBanner);
+            var template = Handlebars.template(AmpCa.templates['acc-template-promoBanner']);
             document.querySelectorAll(".js_promoBanner_wrap")[0].innerHTML = template(data[0]);
             AmpCa.utils.postProcessing.exec('promoBanner', {});
         },
