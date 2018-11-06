@@ -90,17 +90,17 @@
 
 
 <!-- Compiled templates -->
-<script src="../../../dist/renders/homepage/template.homepage.min.js"></script>
-<script src="../../../dist/renders/slider/template.slider.min.js"></script>
-<script src="../../../dist/renders/image/template.image.min.js"></script>
-<script src="../../../dist/renders/banner/template.banner.min.js"></script>
-<script src="../../../dist/renders/video/template.video.min.js"></script>
-<script src="../../../dist/renders/text/template.text.min.js"></script>
-<script src="../../../dist/renders/promoBanner/template.promoBanner.min.js"></script>
-<script src="../../../dist/renders/splitBlock/template.splitBlock.min.js"></script>
-<script src="../../../dist/renders/cardList/template.cardList.min.js"></script>
-<script src="../../../dist/renders/externalBlock/template.externalBlock.min.js"></script>
-<script src="../../../dist/renders/card/template.card.min.js"></script>
+<script src="../../../dist/renders/homepage/acc-template-homepage.min.js"></script>
+<script src="../../../dist/renders/slider/acc-template-slider.min.js"></script>
+<script src="../../../dist/renders/image/acc-template-image.min.js"></script>
+<script src="../../../dist/renders/banner/acc-template-banner.min.js"></script>
+<script src="../../../dist/renders/video/acc-template-video.min.js"></script>
+<script src="../../../dist/renders/text/acc-template-text.min.js"></script>
+<script src="../../../dist/renders/promoBanner/acc-template-promoBanner.min.js"></script>
+<script src="../../../dist/renders/splitBlock/acc-template-splitBlock.min.js"></script>
+<script src="../../../dist/renders/cardList/acc-template-cardList.min.js"></script>
+<script src="../../../dist/renders/externalBlock/acc-template-externalBlock.min.js"></script>
+<script src="../../../dist/renders/card/acc-template-card.min.js"></script>
 
 <script>
     Handlebars.partials = AmpCa.templates;
@@ -113,7 +113,7 @@
             store: 'csdemo'
         },
         callback: function (data) {
-            var template = Handlebars.template(AmpCa.templates.homepage);
+            var template = Handlebars.template(AmpCa.templates['acc-template-homepage']);
             document.querySelectorAll(".js_homepage_wrap")[0].innerHTML = template(data[0]);
 
             loryHelpers.initSliders(document.querySelectorAll(".js_slider"));

@@ -118,7 +118,7 @@ gulp.task('minifyPack', ['build'], function () {
                 './dist/renders/' + module + '/package/' + module + '.min.css'
             ];
             let compiledTemplates = [
-                './dist/renders/' + module + '/template.' + module + '.min.js'
+                './dist/renders/' + module + '/' + module + '.min.js'
             ];
             let fullReusable = [reusable, './src/renders/' + module + '/js/*.js'];
 
@@ -141,7 +141,7 @@ gulp.task('minifyPack', ['build'], function () {
                 compiledTemplates.push(
                     './dist/renders/' +
                     currentDependency +
-                    '/template.' +
+                    '/' +
                     currentDependency +
                     '.min.js'
                 );
@@ -192,7 +192,7 @@ gulp.task('minifyPack', ['build'], function () {
 
 gulp.task('concatAll', ['build'], function () {
     gulp
-        .src(['./dist/renders/*/template.*'])
+        .src(['./dist/renders/*/acc-template-*'])
         .pipe(concat('templates.min.js'))
         .pipe(gulp.dest('./dist/renders/all'));
 
@@ -305,7 +305,7 @@ gulp.task('renders-templates', function () {
             rename(function (path) {
                 name = path.dirname.slice(0, path.dirname.indexOf('package') - 1);
                 path.dirname = name;
-                path.basename = 'template.' + path.basename + '.min';
+                path.basename = path.basename + '.min';
             })
         )
         .pipe(gulp.dest('dist/renders'));
