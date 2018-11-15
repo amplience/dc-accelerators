@@ -83,7 +83,6 @@
             var template = Handlebars.template(AmpCa.templates.blog);
             document.querySelectorAll(".js_blog_wrap")[0].innerHTML = template(data[0]);
             loryHelpers.initSliders(document.querySelectorAll(".js_slider"));
-            AmpCa.utils.postProcessing.exec('blog', {});
         },
         formatData: function (data) {
             return amp.inlineContent(JSON.parse(data));
