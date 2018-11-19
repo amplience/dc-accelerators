@@ -28,14 +28,14 @@
 
 <script src="../../reusable/handlebars_helpers.js"></script>
 
-<script src="../../../dist/renders/image/template.image.min.js"></script>
-<script src="../../../dist/renders/card/template.card.min.js"></script>
+<script src="../../../dist/renders/image/acc-template-image.min.js"></script>
+<script src="../../../dist/renders/card/acc-template-card.min.js"></script>
 
 <script>
 
     AmpCa.utils = new AmpCa.Utils();
 
-    Handlebars.partials.image = AmpCa.templates.image;
+    Handlebars.partials['acc-template-image'] = AmpCa.templates['acc-template-image'];
 
     AmpCa.utils.getCaData({
         auth: {
@@ -46,7 +46,7 @@
         callback: function (data) {
             console.log(data[0]);
 
-            var template = Handlebars.template(AmpCa.templates.card);
+            var template = Handlebars.template(AmpCa.templates['acc-template-card']);
             document.querySelectorAll(".js_card_wrap")[0].innerHTML = template(data[0]);
         },
         formatData: function (data) {

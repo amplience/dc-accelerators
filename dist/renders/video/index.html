@@ -28,7 +28,7 @@
 
 <script src="../../reusable/utils.js"></script>
 
-<script src="../../../dist/renders/video/template.video.min.js"></script>
+<script src="../../../dist/renders/video/acc-template-video.min.js"></script>
 
 <script>
 
@@ -41,7 +41,7 @@
             store: 'csdemo'
         },
         callback: function (data) {
-            var template = Handlebars.template(AmpCa.templates.video);
+            var template = Handlebars.template(AmpCa.templates['acc-template-video']);
             document.querySelectorAll(".js_video_wrap")[0].innerHTML = template(data[0]);
         },
         formatData: function (data) {

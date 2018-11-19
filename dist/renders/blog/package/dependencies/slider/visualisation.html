@@ -86,7 +86,7 @@
         },
         callback: function (data) {
 
-            var template = Handlebars.template(AmpCa.templates.slider);
+            var template = Handlebars.template(AmpCa.templates['acc-template-slider']);
             document.querySelectorAll(".js_slider_wrap")[0].innerHTML = template(data[0]);
 
             loryHelpers.initSliders(document.querySelectorAll(".js_slider"));

@@ -52,7 +52,7 @@
     AmpCa.utils.getCaData({
         url: getQueryVar(['vse', 'content']),
         callback: function (data) {
-            var template = Handlebars.template(AmpCa.templates.promoBanner);
+            var template = Handlebars.template(AmpCa.templates['acc-template-promoBanner']);
             document.querySelectorAll(".js_promoBanner_wrap")[0].innerHTML = template(data[0]);
         },
         formatData: function (data) {

@@ -85,7 +85,7 @@
         url: getQueryVar(['vse', 'content']),
         callback: function (data) {
 
-            var template = Handlebars.template(AmpCa.templates.blog);
+            var template = Handlebars.template(AmpCa.templates['acc-template-blog']);
             document.querySelectorAll(".js_blog_wrap")[0].innerHTML = template(data[0]);
             AmpCa.utils.postProcessing.exec('blog', {});
         },

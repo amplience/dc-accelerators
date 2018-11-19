@@ -36,7 +36,7 @@
 
 <script src="../../reusable/handlebars_helpers.js"></script>
 
-<script src="../../../dist/renders/text/template.text.min.js"></script>
+<script src="../../../dist/renders/text/acc-template-text.min.js"></script>
 
 <script>
 
@@ -49,7 +49,7 @@
             store: 'csdemo'
         },
         callback: function (data) {
-            var template = Handlebars.template(AmpCa.templates.text);
+            var template = Handlebars.template(AmpCa.templates['acc-template-text']);
             document.querySelectorAll(".js_text_wrap")[0].innerHTML = template(data[0]);
         },
         formatData: function (data) {
