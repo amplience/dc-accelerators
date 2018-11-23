@@ -1,3 +1,5 @@
 {
-  "CONTENT_TYPE_BASEPATH": "https://dev-solutions.s3.amazonaws.com/DynamicContentTypes/Accelerators"
+  "CONTENT_TYPE_BASEPATH": "https://dev-solutions.s3.amazonaws.com/DynamicContentTypes/Accelerators",
+  "COMPANY_TAG": "any",
+  "VISUALIZATION_BASEPATH": "https://dev-solutions.s3.amazonaws.com/dc-renders/dist"
 }
