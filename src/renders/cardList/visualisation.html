@@ -5,11 +5,11 @@
     <title>cardList</title>
 
     <link rel="stylesheet"
-          href="https://dev-solutions.s3.amazonaws.com/dc-renders/dist/renders/image/image.min.css"/>
+          href="{VISUALIZATION_BASEPATH}/renders/image/image.min.css"/>
     <link rel="stylesheet"
-          href="https://dev-solutions.s3.amazonaws.com/dc-renders/dist/renders/card/card.min.css"/>
+          href="{VISUALIZATION_BASEPATH}/renders/card/card.min.css"/>
     <link rel="stylesheet"
-          href="https://dev-solutions.s3.amazonaws.com/dc-renders/dist/renders/cardList/cardList.min.css"/>
+          href="{VISUALIZATION_BASEPATH}/renders/cardList/cardList.min.css"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1">
     <style>
@@ -26,15 +26,15 @@
 <div class="js_card_list_wrap"></div>
 
 
-<script src="https://dev-solutions.s3.amazonaws.com/dc-renders/dist/reusable/cms-javascript-sdk.min.js"></script>
-<script src="https://dev-solutions.s3.amazonaws.com/dc-renders/dist/reusable/handlebars.min.js"></script>
-<script src="https://dev-solutions.s3.amazonaws.com/dc-renders/dist/reusable/utils.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/reusable/cms-javascript-sdk.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/reusable/handlebars.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/reusable/utils.js"></script>
 
-<script src="https://dev-solutions.s3.amazonaws.com/dc-renders/dist/reusable/handlebars_helpers.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/reusable/handlebars_helpers.js"></script>
 
-<script src="https://dev-solutions.s3.amazonaws.com/dc-renders/dist/renders/image/template.image.min.js"></script>
-<script src="https://dev-solutions.s3.amazonaws.com/dc-renders/dist/renders/card/template.card.min.js"></script>
-<script src="https://dev-solutions.s3.amazonaws.com/dc-renders/dist/renders/cardList/template.cardList.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/image/template.image.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/card/template.card.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/cardList/template.cardList.min.js"></script>
 
 
 <script>
@@ -52,7 +52,7 @@
                 console.warn('Param: ' + x + ' not found');
             }
         }
-        var url = 'https://' + paramsObj.vse + '/cms/content/query?fullBodyObject=true&scope=tree&store=any&query=%7B"sys.iri":"http://content.cms.amplience.com/' + paramsObj.content + '"%7D&v=' + Date.now();
+        var url = 'https://' + paramsObj.vse + '/cms/content/query?fullBodyObject=true&scope=tree&store={COMPANY_TAG}&query=%7B"sys.iri":"http://content.cms.amplience.com/' + paramsObj.content + '"%7D&v=' + Date.now();
         return url;
     }
 
