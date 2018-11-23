@@ -43,9 +43,6 @@
         callback: function (data) {
             var template = Handlebars.template(AmpCa.templates['acc-template-video']);
             document.querySelectorAll(".js_video_wrap")[0].innerHTML = template(data[0]);
-
-            AmpCa.utils.postProcessing.exec('video');
-
         },
         formatData: function (data) {
             return amp.inlineContent(JSON.parse(data));
