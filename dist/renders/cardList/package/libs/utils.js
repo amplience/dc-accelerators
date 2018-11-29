@@ -71,6 +71,25 @@
             });
         },
 
+        getHtmlServiceData: function (params) {
+            var self = this;
+
+            var url = encodeURI(params.auth.baseUrl + '/v1/content/' +
+                params.auth.store + '/content-item/' +
+                params.auth.id + '?template=' +
+                params.auth.templateName +
+                '&v=' + Date.now());
+
+            return this.baseAjax({
+                url: url,
+                callback: function (data) {
+                    params.callback(data);
+                },
+                errorCallback: function () {
+                    self.getHtmlServiceData(params);
+                }
+            });
+        },
         postProcessing: {
             exec: function (renderName, params) {
                 var self = this;
