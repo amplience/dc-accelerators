@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "del": "3.0.0",
-    "event-stream": "^3.3.4",
+    "event-stream": "^4.0.1",
     "gulp": "3.9.1",
     "gulp-add-src": "^0.2.0",
     "gulp-autoprefixer": "4.0.0",

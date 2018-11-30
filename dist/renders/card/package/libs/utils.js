@@ -71,10 +71,35 @@
             });
         },
 
+        getHtmlServiceData: function (params) {
+            var self = this;
+
+            var url = encodeURI(params.auth.baseUrl + '/v1/content/' +
+                params.auth.store + '/content-item/' +
+                params.auth.id + '?template=' +
+                params.auth.templateName +
+                '&v=' + Date.now());
+
+            return this.baseAjax({
+                url: url,
+                callback: function (data) {
+                    params.callback(data);
+                },
+                errorCallback: function () {
+                    self.getHtmlServiceData(params);
+                }
+            });
+        },
         postProcessing: {
             exec: function (renderName, params) {
                 var self = this;
                 self.dependencies[renderName].forEach(function (fixName) {
+                    self.handlers[fixName](params);
+                });
+            },
+            execHtmlService: function (renderName, params) {
+                var self = this;
+                self.htmlServiceDependencies[renderName].forEach(function (fixName) {
                     self.handlers[fixName](params);
                 });
             },
@@ -85,6 +110,18 @@
                     'promoBanner'
                 ],
                 promoBanner: ['promoBanner']
+            },
+            htmlServiceDependencies: {
+                slider: ['fixAndroidSwipeOverTheVideo', 'roundel', 'bannerStyle'],
+                splitBlock: ['roundel', 'showdown', 'bannerStyle', 'split'],
+                blog: ['roundel', 'bannerStyle', 'split', 'showdown'],
+                homepage: ['fixAndroidSwipeOverTheVideo', 'promoBanner', 'roundel', 'bannerStyle', 'split', 'showdown'],
+                promoBanner: ['promoBanner'],
+                text: ['showdown'],
+                image: ['roundel'],
+                banner: ['roundel', 'bannerStyle'],
+                card: ['roundel'],
+                cardList: ['roundel']
             },
             handlers: {
                 promoBanner: function () {
@@ -252,8 +289,174 @@
                             });
                         });
                     }
+                },
+                split: function () {
+                    var splitClass = function (index, split) {
+                        if (typeof split === 'undefined') {
+                            return '';
+                        }
+                        var id = parseInt(index, 10);
+                        var splitter = split.split('/');
+                        if (id === 0) {
+                            return 'amp-dc-size-' + splitter[0];
+                        }
+                        return 'amp-dc-size-' + splitter[1];
+                    };
+
+                    var splitBlock = [].slice.call(document.querySelectorAll('.amp-dc-splitBlock'));
+                    if (splitBlock.length < 1) {
+                        return;
+                    }
+
+                    splitBlock.forEach(function (split) {
+                        var needle = 'js_dc_split-';
+                        var className = split.className;
+                        var splitPosition = className.indexOf(needle);
+
+                        if (splitPosition == -1) {
+                            return;
+                        }
+
+                        var splitPercentage = className.substring(splitPosition + needle.length, className.length);
+
+                        var splitParts = [].slice.call(split.querySelectorAll('.amp-dc-split-part'));
+
+                        if (splitParts.length > 1) {
+                            splitParts.forEach(function (splitPart, ind) {
+                                var addClass = splitClass(ind, splitPercentage).trim();
+                                splitPart.classList.add(addClass);
+                            });
+                        }
+                    });
+                },
+                bannerStyle: function (opts) {
+                    var bannerSections = [].slice.call(document.querySelectorAll('.amp-dc-banner-info'));
+
+                    if (bannerSections.length < 1) {
+                        return;
+                    }
+
+                    var setStyle = function (opts) {
+                        var style = '';
+                        var hex = opts.bannerColor || '#fff';
+                        var alpha = opts.bannerOpacity || 1;
+                        var hex = hex.replace('#', '');
+
+                        if (hex.length === 3) {
+                            var hexArr = hex.split('');
+                            hex = hexArr[0] + hexArr[0];
+                            hex += (hexArr[1] + hexArr[1]);
+                            hex += (hexArr[2] + hexArr[2]);
+                        }
+
+                        var r = parseInt(hex.slice(0, 2), 16);
+                        var g = parseInt(hex.slice(2, 4), 16);
+                        var b = parseInt(hex.slice(4, 6), 16);
+
+                        if (alpha) {
+                            style += 'background-color:rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + '); ';
+                        }
+                        else {
+                            style += 'background-color:rgb(' + r + ', ' + g + ', ' + b + '); ';
+                        }
+
+                        if (opts.textColour) {
+                            style += 'color: #' + opts.textColour;
+                        }
+
+                        return style;
+                    };
+
+                    bannerSections.forEach(function (bannerSection) {
+                        bannerSection.setAttribute('style', setStyle({
+                                bannerColor: bannerSection.getAttribute('data-color'),
+                                bannerOpacity: bannerSection.getAttribute('data-opacity'),
+                                textColour: bannerSection.getAttribute('data-txtcolor')
+                            })
+                        );
+                    });
+                },
+                roundel: function () {
+                    var imgs = [].slice.call(document.querySelectorAll('.amp-dc-image'));
+
+                    if (imgs.length < 1) {
+                        return;
+                    }
+
+                    var transformRoundel = function (roundel) {
+                        if (roundel && roundel[0] && roundel[0].roundel && roundel[0].roundel.name) {
+
+                            var roundelParams = [];
+                            for (var x = 0; x < roundel.length; x++) {
+                                var roundelParam = '';
+                                switch (roundel[x].roundelPosition) {
+                                    case 'Bottom Right':
+                                        roundelParam = 'p1_img=';
+                                        break;
+                                    case 'Bottom Left':
+                                        roundelParam = 'p2_img=';
+                                        break;
+                                    case 'Top Left':
+                                        roundelParam = 'p3_img=';
+                                        break;
+                                    case 'Top Right':
+                                        roundelParam = 'p4_img=';
+                                        break;
+
+                                }
+
+                                var roundelRatio = roundel[x].roundelRatio;
+                                var ratioIndex = x + 1;
+                                roundelParam += roundel[x].roundel.name + (roundelRatio ? ('&roundelRatio' + ratioIndex + '=' + roundelRatio) : '');
+                                roundelParams.push(roundelParam);
+                            }
+
+                            return '&$$roundel$$&' + roundelParams.join('&');
+
+                        } else {
+                            return '';
+                        }
+                    };
+
+                    var populateRoundels = function (imgStr, roundels) {
+                        var roundelStr = transformRoundel(roundels);
+
+                        var imgWithRoundel = imgStr.replace(/(\s(1|2)x)/g, (roundelStr + '$1'));
+                        imgWithRoundel = imgWithRoundel.replace(/(src=".*?)"/g, ('$1' + roundelStr + '"'));
+                        return imgWithRoundel;
+                    };
+
+                    imgs.forEach(function (img) {
+                        var roundels = img.getAttribute('data-roundel');
+                        if (!roundels) {
+                            return;
+                        }
+
+                        roundels = JSON.parse(roundels);
+                        img.innerHTML = populateRoundels(img.innerHTML, roundels);
+                    });
+                },
+                showdown: function () {
+                    var textNodes = [].slice.call(document.querySelectorAll('.amp-dc-text'));
+
+                    if (textNodes.length < 1) {
+                        return;
+                    }
+
+                    if (typeof showdown === 'undefined') {
+                        return html || '';
+                    }
+
+                    var converter = new showdown.Converter({
+                        noHeaderId: true,
+                        simpleLineBreaks: true
+                    });
+
+                    textNodes.forEach(function (textNode) {
+                        textNode.innerHTML = converter.makeHtml(textNode.innerHTML.trim());
+                    });
                 }
-            }
+            },
         },
         constructor: Utils
     };
