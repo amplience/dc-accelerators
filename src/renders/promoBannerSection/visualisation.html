@@ -2,16 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Slider</title>
+    <title>Promo banner section</title>
 
     <link rel="stylesheet"
-          href="{VISUALIZATION_BASEPATH}/renders/slider/slider.min.css"/>
-    <link rel="stylesheet"
-          href="{VISUALIZATION_BASEPATH}/renders/banner/banner.min.css"/>
-    <link rel="stylesheet"
-          href="{VISUALIZATION_BASEPATH}/renders/image/image.min.css"/>
-    <link rel="stylesheet"
-          href="{VISUALIZATION_BASEPATH}/renders/video/video.min.css"/>
+          href="{VISUALIZATION_BASEPATH}/renders/promoBanner/promoBanner.min.css"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1">
     <style>
@@ -25,23 +19,14 @@
 </head>
 <body>
 
-<div class="js_slider_wrap" style="margin:0 auto;"></div>
+<div class="js_promoBannerSection_wrap" style="max-width:1024px; margin:20px auto;"></div>
 
 
 <script src="{VISUALIZATION_BASEPATH}/reusable/cms-javascript-sdk.min.js"></script>
 <script src="{VISUALIZATION_BASEPATH}/reusable/handlebars.min.js"></script>
 <script src="{VISUALIZATION_BASEPATH}/reusable/utils.js"></script>
 
-<script src="{VISUALIZATION_BASEPATH}/reusable/handlebars_helpers.js"></script>
-<script src="{VISUALIZATION_BASEPATH}/reusable/lory.min.js"></script>
-
-<script src="{VISUALIZATION_BASEPATH}/renders/slider/package/sliderHelper.js"></script>
-
-
-<script src="{VISUALIZATION_BASEPATH}/renders/slider/acc-template-slider.min.js"></script>
-<script src="{VISUALIZATION_BASEPATH}/renders/image/acc-template-image.min.js"></script>
-<script src="{VISUALIZATION_BASEPATH}/renders/banner/acc-template-banner.min.js"></script>
-<script src="{VISUALIZATION_BASEPATH}/renders/video/acc-template-video.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/promoBannerSection/acc-template-promoBannerSection.min.js"></script>
 
 <script>
     function getQueryVar(params) {
@@ -62,30 +47,20 @@
         return url;
     }
 
-    Handlebars.partials = AmpCa.templates;
-
     AmpCa.utils = new AmpCa.Utils();
 
     AmpCa.utils.getCaData({
         url: getQueryVar(['vse', 'content']),
-        auth: {
-            baseUrl: 'https://c1.adis.ws',
-            id: 'aafecabb-d1da-4300-9055-2bdbb700a4dd', //'653d3a56-c433-4d94-a585-894c42418082'
-            store: 'csdemo'
-        },
         callback: function (data) {
-
-            var template = Handlebars.template(AmpCa.templates['acc-template-slider']);
-            document.querySelectorAll(".js_slider_wrap")[0].innerHTML = template(data[0]);
-
-            loryHelpers.initSliders(document.querySelectorAll(".js_slider"));
-            AmpCa.utils.postProcessing.exec('slider', {});
-
+            var template = Handlebars.template(AmpCa.templates['acc-template-promoBannerSection']);
+            document.querySelectorAll(".js_promoBannerSection_wrap")[0].innerHTML = template(data[0]);
+            AmpCa.utils.postProcessing.exec('promoBanner', {});
         },
         formatData: function (data) {
             return amp.inlineContent(JSON.parse(data));
         }
     });
+
 </script>
 </body>
 </html>

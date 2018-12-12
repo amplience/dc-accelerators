@@ -43,10 +43,10 @@
 <script src="{VISUALIZATION_BASEPATH}/reusable/handlebars_helpers.js"></script>
 
 
-<script src="{VISUALIZATION_BASEPATH}/renders/splitBlock/template.splitBlock.min.js"></script>
-<script src="{VISUALIZATION_BASEPATH}/renders/image/template.image.min.js"></script>
-<script src="{VISUALIZATION_BASEPATH}/renders/text/template.text.min.js"></script>
-<script src="{VISUALIZATION_BASEPATH}/renders/video/template.video.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/splitBlock/acc-template-splitBlock.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/image/acc-template-image.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/text/acc-template-text.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/video/acc-template-video.min.js"></script>
 
 <script>
     function getQueryVar(params) {
@@ -76,9 +76,6 @@
 
             var template = Handlebars.template(AmpCa.templates['acc-template-splitBlock']);
             document.querySelectorAll(".js_splitBlock_wrap")[0].innerHTML = template(data[0]);
-
-            AmpCa.utils.postProcessing.exec('splitBlock');
-
         },
         formatData: function (data) {
             return amp.inlineContent(JSON.parse(data));
