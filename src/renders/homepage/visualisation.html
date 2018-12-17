@@ -94,17 +94,17 @@
 <script src="{VISUALIZATION_BASEPATH}/renders/slider/package/sliderHelper.js"></script>
 
 
-<script src="{VISUALIZATION_BASEPATH}/renders/homepage/template.homepage.min.js"></script>
-<script src="{VISUALIZATION_BASEPATH}/renders/slider/template.slider.min.js"></script>
-<script src="{VISUALIZATION_BASEPATH}/renders/image/template.image.min.js"></script>
-<script src="{VISUALIZATION_BASEPATH}/renders/banner/template.banner.min.js"></script>
-<script src="{VISUALIZATION_BASEPATH}/renders/video/template.video.min.js"></script>
-<script src="{VISUALIZATION_BASEPATH}/renders/text/template.text.min.js"></script>
-<script src="{VISUALIZATION_BASEPATH}/renders/promoBanner/template.promoBanner.min.js"></script>
-<script src="{VISUALIZATION_BASEPATH}/renders/splitBlock/template.splitBlock.min.js"></script>
-<script src="{VISUALIZATION_BASEPATH}/renders/cardList/template.cardList.min.js"></script>
-<script src="{VISUALIZATION_BASEPATH}/renders/externalBlock/template.externalBlock.min.js"></script>
-<script src="{VISUALIZATION_BASEPATH}/renders/card/template.card.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/homepage/acc-template-homepage.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/slider/acc-template-slider.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/image/acc-template-image.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/banner/acc-template-banner.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/video/acc-template-video.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/text/acc-template-text.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/promoBanner/acc-template-promoBanner.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/splitBlock/acc-template-splitBlock.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/cardList/acc-template-cardList.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/externalBlock/acc-template-externalBlock.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/card/acc-template-card.min.js"></script>
 
 <script>
     function getQueryVar(params) {
@@ -131,12 +131,6 @@
     AmpCa.utils.getCaData({
         url: getQueryVar(['vse', 'content']),
         callback: function (data) {
-
-
-            data[0].contentTypes.forEach(function (contentType) {
-                contentType.renderTypes = renderTypes;
-            });
-
             var template = Handlebars.template(AmpCa.templates['acc-template-homepage']);
             document.querySelectorAll(".js_homepage_wrap")[0].innerHTML = template(data[0]);
 

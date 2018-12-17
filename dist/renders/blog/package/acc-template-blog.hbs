@@ -2,6 +2,9 @@
     <div class="amp-dc-blog-title">
         {{ title }}
     </div>
+    <div class="amp-dc-blog-snippet">
+        {{templateChooser snippet}}
+    </div>
     <div class="amp-dc-blog-content">
         {{#each content}}
             <div class="amp-dc-block-wrap">{{templateChooser this}}</div>

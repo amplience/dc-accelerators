@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Video</title>
+    <title>Promo banner section</title>
 
     <link rel="stylesheet"
-          href="https://s3-eu-west-1.amazonaws.com/dev-solutions/DC-accelerators-v2.0.0/dist/renders/video/video.min.css"/>
+          href="https://s3-eu-west-1.amazonaws.com/dev-solutions/DC-accelerators-v2.0.0/dist/renders/promoBanner/promoBanner.min.css"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1">
     <style>
@@ -19,14 +19,14 @@
 </head>
 <body>
 
-<div class="js_video_wrap"></div>
+<div class="js_promoBannerSection_wrap" style="max-width:1024px; margin:20px auto;"></div>
 
 
 <script src="https://s3-eu-west-1.amazonaws.com/dev-solutions/DC-accelerators-v2.0.0/dist/reusable/cms-javascript-sdk.min.js"></script>
 <script src="https://s3-eu-west-1.amazonaws.com/dev-solutions/DC-accelerators-v2.0.0/dist/reusable/handlebars.min.js"></script>
-<script src="https://s3-eu-west-1.amazonaws.com/dev-solutions/DC-accelerators-v2.0.0/dist/reusable/handlebars_helpers.js"></script>
 <script src="https://s3-eu-west-1.amazonaws.com/dev-solutions/DC-accelerators-v2.0.0/dist/reusable/utils.js"></script>
-<script src="https://s3-eu-west-1.amazonaws.com/dev-solutions/DC-accelerators-v2.0.0/dist/renders/video/acc-template-video.min.js"></script>
+
+<script src="https://s3-eu-west-1.amazonaws.com/dev-solutions/DC-accelerators-v2.0.0/dist/renders/promoBannerSection/acc-template-promoBannerSection.min.js"></script>
 
 <script>
     function getQueryVar(params) {
@@ -52,8 +52,9 @@
     AmpCa.utils.getCaData({
         url: getQueryVar(['vse', 'content']),
         callback: function (data) {
-            var template = Handlebars.template(AmpCa.templates['acc-template-video']);
-            document.querySelectorAll(".js_video_wrap")[0].innerHTML = template(data[0]);
+            var template = Handlebars.template(AmpCa.templates['acc-template-promoBannerSection']);
+            document.querySelectorAll(".js_promoBannerSection_wrap")[0].innerHTML = template(data[0]);
+            AmpCa.utils.postProcessing.exec('promoBanner', {});
         },
         formatData: function (data) {
             return amp.inlineContent(JSON.parse(data));
@@ -61,6 +62,5 @@
     });
 
 </script>
-
 </body>
 </html>
