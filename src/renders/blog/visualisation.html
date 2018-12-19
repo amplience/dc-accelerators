@@ -26,17 +26,6 @@
             font-family: Arial, Helvetica, sans-serif;
         }
 
-        video::-webkit-media-controls {
-            position: static;
-        }
-
-        video::-webkit-media-controls-enclosure {
-            width: 100%;
-            position: absolute;
-            left: 0;
-            bottom: 0;
-        }
-
     </style>
 </head>
 <body>
@@ -49,13 +38,15 @@
 <script src="{VISUALIZATION_BASEPATH}/reusable/showdown.min.js"></script>
 <script src="{VISUALIZATION_BASEPATH}/reusable/utils.js"></script>
 
-<script src="{VISUALIZATION_BASEPATH}/reusable/handlebars_helpers.js"></script>
+<script src="../../../reusable/handlebars_helpers.js"></script>
 
 
-<script src="{VISUALIZATION_BASEPATH}/renders/blog/template.blog.min.js"></script>
-<script src="{VISUALIZATION_BASEPATH}/renders/image/template.image.min.js"></script>
-<script src="{VISUALIZATION_BASEPATH}/renders/text/template.text.min.js"></script>
-<script src="{VISUALIZATION_BASEPATH}/renders/video/template.video.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/blog/acc-template-blog.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/image/acc-template-image.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/text/acc-template-text.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/video/acc-template-video.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/banner/acc-template-banner.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/blog/acc-template-snippet.min.js"></script>
 
 <script>
 
@@ -87,7 +78,6 @@
 
             var template = Handlebars.template(AmpCa.templates['acc-template-blog']);
             document.querySelectorAll(".js_blog_wrap")[0].innerHTML = template(data[0]);
-            AmpCa.utils.postProcessing.exec('blog', {});
         },
         formatData: function (data) {
             return amp.inlineContent(JSON.parse(data));

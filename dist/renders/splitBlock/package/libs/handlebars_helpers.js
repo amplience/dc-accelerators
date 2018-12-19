@@ -253,7 +253,7 @@
                 }
             });
 
-            Handlebars.registerHelper('bannerRoundel', function (roundel) {
+            Handlebars.registerHelper('bannerRoundel', function (roundel, options) {
                 if (
                     roundel &&
                     roundel[0] &&
@@ -284,6 +284,10 @@
                         }
 
                         var roundelRatio = roundel[x].roundelRatio;
+
+                        if (options && options.hash && options.hash.aspectRatio) {
+                            roundelRatio = options.hash.aspectRatio;
+                        }
                         roundelParam +=
                             roundel[x].roundel.name +
                             (roundelRatio
