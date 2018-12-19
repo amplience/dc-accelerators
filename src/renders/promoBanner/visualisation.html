@@ -5,7 +5,7 @@
     <title>Promo banner</title>
 
     <link rel="stylesheet"
-          href="https://dev-solutions.s3.amazonaws.com/dc-renders/dist/renders/promoBanner/promoBanner.min.css"/>
+          href="{VISUALIZATION_BASEPATH}/renders/promoBanner/promoBanner.min.css"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1">
     <style>
@@ -22,11 +22,11 @@
 <div class="js_promoBanner_wrap" style="max-width:1024px; margin:20px auto;"></div>
 
 
-<script src="https://dev-solutions.s3.amazonaws.com/dc-renders/dist/reusable/cms-javascript-sdk.min.js"></script>
-<script src="https://dev-solutions.s3.amazonaws.com/dc-renders/dist/reusable/handlebars.min.js"></script>
-<script src="https://dev-solutions.s3.amazonaws.com/dc-renders/dist/reusable/utils.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/reusable/cms-javascript-sdk.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/reusable/handlebars.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/reusable/utils.js"></script>
 
-<script src="https://dev-solutions.s3.amazonaws.com/dc-renders/dist/renders/promoBanner/template.promoBanner.min.js"></script>
+<script src="{VISUALIZATION_BASEPATH}/renders/promoBanner/acc-template-promoBanner.min.js"></script>
 
 <script>
     function getQueryVar(params) {
@@ -43,7 +43,7 @@
                 console.warn('Param: ' + x + ' not found');
             }
         }
-        var url = 'https://' + paramsObj.vse + '/cms/content/query?fullBodyObject=true&scope=tree&store=any&query=%7B"sys.iri":"http://content.cms.amplience.com/' + paramsObj.content + '"%7D&v=' + Date.now();
+        var url = 'https://' + paramsObj.vse + '/cms/content/query?fullBodyObject=true&scope=tree&store={COMPANY_TAG}&query=%7B"sys.iri":"http://content.cms.amplience.com/' + paramsObj.content + '"%7D&v=' + Date.now();
         return url;
     }
 
@@ -54,6 +54,7 @@
         callback: function (data) {
             var template = Handlebars.template(AmpCa.templates['acc-template-promoBanner']);
             document.querySelectorAll(".js_promoBanner_wrap")[0].innerHTML = template(data[0]);
+            AmpCa.utils.postProcessing.exec('promoBanner', {});
         },
         formatData: function (data) {
             return amp.inlineContent(JSON.parse(data));
