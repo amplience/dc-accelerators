@@ -472,7 +472,7 @@ gulp.task('copy-viewer-kit-modules', function() {
 
 gulp.task('buildAllWithoutReload', gulp.series('build', 'addDependencies', 'addContentTypes', 'concatAll'));
 
-gulp.task('buildAll', gulp.series(['buildAllWithoutReload']), function() {
+gulp.task('buildAll', gulp.series('buildAllWithoutReload'), function() {
   console.log(1)
   return gulp.src('*').pipe(connect.reload());
 });
@@ -486,7 +486,8 @@ gulp.task(
 );
 
 gulp.task('watch', function () {
-   gulp.watch('./src/!**!/!*', gulp.series('buildAll'));
+  gulp.watch('./src/!**!/!*', gulp.series('buildAll'));
+  return false;
 });
 
 gulp.task('default', gulp.parallel(['watch', 'server']));
