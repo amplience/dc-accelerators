@@ -236,9 +236,12 @@
                                 roundelParam = 'p4_img=';
                                 imageRoundelIndex = 4;
                                 break;
+                          default:
+                            roundelParam = 'p5_img=';
+                            imageRoundelIndex = 5;
                         }
 
-                        var roundelRatio = roundel[x].roundelRatio;
+                        var roundelRatio = roundel[x].roundelRatio || 1;
                         roundelParam +=
                             roundel[x].roundel.name +
                             (roundelRatio
@@ -281,9 +284,12 @@
                                 roundelParam = 'p4_img=';
                                 imageRoundelIndex = 4;
                                 break;
+                          default:
+                            roundelParam = 'p5_img=';
+                            imageRoundelIndex = 5;
                         }
 
-                        var roundelRatio = roundel[x].roundelRatio;
+                        var roundelRatio = roundel[x].roundelRatio || 1;
 
                         if (options && options.hash && options.hash.aspectRatio) {
                             roundelRatio = options.hash.aspectRatio;
@@ -366,9 +372,7 @@
                 if (
                     this.roundel &&
                     this.roundel[0] &&
-                    this.roundel[0].roundel &&
-                    this.roundel[0].roundelPosition &&
-                    this.roundel[0].roundelRatio
+                    this.roundel[0].roundel
                 ) {
                     return opts.fn(this);
                 } else {
