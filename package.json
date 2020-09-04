@@ -14,7 +14,7 @@
     "dc-accelerators-content-types": "github:amplience/dc-accelerators-content-types#fccb8a4c3d27c90ef53f92a821b02751f884f6d2",
     "handlebars": "^4.1.2",
     "lory.js": "2.2.1",
-    "showdown": "1.7.1"
+    "showdown": "1.9.1"
   },
   "devDependencies": {
     "del": "3.0.0",
