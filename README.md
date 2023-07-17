@@ -1,9 +1,3 @@
-<div align="center">
-    <img src="https://amp-github-assets.s3-eu-west-1.amazonaws.com/header.png" alt="Amplience Content Authoring" title="Amplience" style="margin-left:auto; margin-right:auto; display:block;" height="200px" />
-</div>
-
-
-
 # Dynamic Content Accelerators
 
 
